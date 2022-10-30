@@ -50,10 +50,11 @@ router.get("/save", async (req, res) => {
 router.get("/read", async (req, res) => {
   try {
     const data = await ThreadModel.find();
-    res.send(arrayOBJ).json({ data });
+    console.log("database fetched !");
+    res.status(201).json({ data });
   } catch (err) {
     console.log(err);
-    res.status(400).json("error système");
+    res.status(400).json(err);
   }
 });
 
