@@ -6,6 +6,7 @@ const tweetsRoutes = require("./routes/threadRoutes.js");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const port = process.env.PORT || 5500;
 
 app.use(bodyParser.json());
 app.use(
@@ -18,4 +19,4 @@ app.use(
 );
 app.use("/tweets", tweetsRoutes);
 
-app.listen(5500, () => console.log("Server started: 5500"));
+app.listen(port, () => console.log(`Server started: ${port}`));
