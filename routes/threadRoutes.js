@@ -47,4 +47,14 @@ router.get("/save", async (req, res) => {
   }
 });
 
+router.get("/read", async (req, res) => {
+  try {
+    const data = await ThreadModel.find();
+    res.send(arrayOBJ).json({ data });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json("error système");
+  }
+});
+
 module.exports = router;
