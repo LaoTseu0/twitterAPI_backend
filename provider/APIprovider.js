@@ -21,4 +21,13 @@ async function twitterAPI() {
   return data.data.data;
 }
 
-module.exports = { twitterAPI };
+async function getAuthorName(author_id) {
+  const author_name = await axios.get(`${BASE_URL}users?ids=${author_id}`, {
+    headers: {
+      Authorization: `Bearer ${BEARER_TOKEN}`,
+    },
+  });
+  return author_name.data.data[0].username;
+}
+
+module.exports = { twitterAPI, getAuthorName };

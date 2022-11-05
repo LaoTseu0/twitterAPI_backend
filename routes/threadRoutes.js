@@ -14,35 +14,34 @@ router.get("/save", async (req, res) => {
   const tweets = await twitterAPI();
   const arrayOBJ = [];
 
-  console.log(tweets);
-
   tweets.forEach((e) => {
     arrayOBJ.push(mainTraitement(e));
   });
 
+  // console.log(e);
   arrayOBJ.forEach(async (e) => {
-    const newTweet = new ThreadModel({
-      author_id: e.author_id,
-      created_at: e.created_at,
-      public_metrics: e.public_metrics,
-      url: e.url,
-      tag: e.tag,
-      text: e.text,
-      date: Date.now(),
-    });
-
-    newTweet.save((err, docs) => {
-      if (!err) console.log("ok!");
-      else {
-        console.log(err);
-        console.log("Error : create new tweet fail");
-      }
-    });
+    // console.log(await e);
+    // const newTweet = new ThreadModel({
+    //   author_id: await e.author_name,
+    //   created_at: await e.created_at,
+    //   public_metrics: await e.public_metrics,
+    //   url: await e.url,
+    //   tag: await e.tag,
+    //   text: await e.text,
+    //   date: Date.now(),
+    // });
+    // newTweet.save((err, docs) => {
+    //   if (!err) console.log("Documents save in the DB !");
+    //   else {
+    //     console.log(err);
+    //     console.log("Error : create new tweet fail");
+    //   }
+    // });
   });
   res.send(arrayOBJ);
   try {
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).json("error système");
   }
 });
