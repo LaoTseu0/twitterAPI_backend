@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // origin: process.env.ENV_LOCATION === "DEV" ? process.env.ENV_DEV : process.env.ENV_HEROKU,
 app.use(
   cors({
-    origin: "http://croquette.com",
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     preflightContinue: false,
