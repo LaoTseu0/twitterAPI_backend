@@ -14,9 +14,8 @@ app.use(
   cors({
     origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
     preflightContinue: false,
-    optionsSuccessStatus: 204,
+    optionsSuccessStatus: 200,
   })
 );
 app.use("/tweets", tweetsRoutes);
