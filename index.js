@@ -14,6 +14,7 @@ app.use(
   cors({
     origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    Headers: "Origin, ContentType, Accept, Authorization",
     preflightContinue: false,
     optionsSuccessStatus: 204,
   })
