@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // origin: process.env.ENV_LOCATION === "DEV" ? process.env.ENV_DEV : process.env.ENV_HEROKU,
 app.use(
   cors({
-    origin: "https://interface-api-twitter.vercel.app/",
+    origin: "*",
   })
 );
 app.use("/tweets", tweetsRoutes);
