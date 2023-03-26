@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // origin: process.env.ENV_LOCATION === "DEV" ? process.env.ENV_DEV : process.env.ENV_HEROKU,
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     Headers: "Origin, ContentType, Accept, Authorization",
     preflightContinue: false,
