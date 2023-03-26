@@ -11,7 +11,13 @@ const port = process.env.PORT || 5500;
 app.use(bodyParser.json());
 // origin: process.env.ENV_LOCATION === "DEV" ? process.env.ENV_DEV : process.env.ENV_HEROKU,
 app.use(
-  cors()
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    Headers: "Origin, ContentType, Accept, Authorization",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
 );
 app.use("/tweets", tweetsRoutes);
 
