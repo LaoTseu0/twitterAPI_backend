@@ -1,29 +1,35 @@
-const e = require("express");
-const { getAuthorName } = require("../provider/APIprovider");
+const { getAuthorProfile } = require("../provider/APIprovider");
 
 const mainTraitement = async (dataApi) => {
-  const { public_metrics, created_at, author_id, text } = dataApi;
+  const { public_metrics, created_at, author_id, text, id } = dataApi;
 
-  const urls = dataApi.entities?.urls;
+  const hashtagMatchRegex = text.match(/#\w+/g);
+  textFiltered = text.replace(hashtagMatchRegex, "");
+
+  const urls = dataApi.entities?.urls?.map((e) => e.url?.toString() ?? "");
 
   const tags = [];
+
+  const tweet_id = id;
 
   /**
    * fonction à exporter
    * @param {any} _api
    */
-  async function AddTag(_api) {
-    await _api.entities.hashtags?.forEach((_tag) => {
+  function AddTag(_api) {
+    _api.entities.hashtags?.forEach((_tag) => {
       tags.push(_tag.tag);
     });
   }
 
   AddTag(dataApi);
 
-  const author_name = await getAuthorName(author_id);
-  console.log(author_name);
+  // const author = getAuthorProfile(author_id);
+  const author = await getAuthorProfile(author_id);
+  // const author = getAuthorProfile(author_id);
+  // const author_name = "arthur";
 
-  return { author_name, created_at, public_metrics, urls, text, tags };
+  return { author, created_at, tweet_id, public_metrics, urls, textFiltered, tags };
 };
 
 module.exports = { mainTraitement };

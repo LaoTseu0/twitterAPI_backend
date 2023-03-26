@@ -21,13 +21,31 @@ async function twitterAPI() {
   return data.data.data;
 }
 
-async function getAuthorName(author_id) {
-  const author_name = await axios.get(`${BASE_URL}users?ids=${author_id}`, {
-    headers: {
-      Authorization: `Bearer ${BEARER_TOKEN}`,
-    },
-  });
-  return author_name.data.data[0].username;
+async function getAuthorProfile(author_id) {
+  const author = await axios
+    .get(`${BASE_URL}users?ids=${author_id}&${USER_H_SELECTOR}`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    })
+    .then((res) => {
+      // console.log(res.data.data[0]);
+      return res.data.data[0];
+      //  res.data.data[0].profile_image_url;
+    });
+
+  // const image = axios
+  //   .get(`${BASE_URL}users?ids=${author_id}&${USER_H_SELECTOR}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${BEARER_TOKEN}`,
+  //     },
+  //   })
+  //   .then((res) => {
+  //     // console.log(res.data.data[0]);
+  //     return res.data.data[0].name;
+  //     //  res.data.data[0].profile_image_url;
+  //   });
+  return author;
 }
 
-module.exports = { twitterAPI, getAuthorName };
+module.exports = { twitterAPI, getAuthorProfile };

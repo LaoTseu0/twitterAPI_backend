@@ -3,13 +3,17 @@ const mongoose = require("mongoose");
 const ThreadModel = mongoose.model(
   "tweets",
   {
-    author_id: {
+    author_name: {
       type: String,
-      required: true,
+    },
+    profile_image_url: {
+      type: String,
     },
     created_at: {
       type: String,
-      required: true,
+    },
+    tweet_id: {
+      type: String,
     },
     public_metrics: {
       retweet_count: { type: Number },
@@ -17,11 +21,11 @@ const ThreadModel = mongoose.model(
       like_count: { type: Number },
       quote_count: { type: Number },
     },
-    url: {
-      type: String,
+    urls: {
+      type: [String],
       // required: true,
     },
-    tag: {
+    tags: {
       type: [String],
       // required: true,
     },
