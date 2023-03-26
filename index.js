@@ -13,6 +13,10 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   })
 );
 app.use("/tweets", tweetsRoutes);
